@@ -306,6 +306,28 @@ confirms this at its "Dead code to ignore" section.
 | 9 | Wordmark is `VTXO EXPLORER`, not `VTXOSCOPE` | Product decision. It is ~40% wider, so the 62px top bar's `gap: 24px` flex row has less room — the search input (`flex: 1`) absorbs it. Verify at exactly 1180px that nothing wraps |
 | 10 | `paths` stat computed in `BigInt` | The count doubles per merge. >53 merges overflows `Number.MAX_SAFE_INTEGER` and silently reports wrong values. Display abbreviated above 10¹² |
 | 11 | Bare-txid picker screen invented | Not designed; reuse the table-row visual language (type pill + mono txid + amount) |
+| 12 | **Commitment txs show Block + Time instead of Depth + Inputs** in the detail panel | A commitment is always the graph root, so Depth ≡ 0 and Inputs ≡ 0 — two cells that never vary. Block height/time are what distinguish one commitment from another. All other types keep Depth/Inputs; the remaining three fields are unchanged for every type |
+
+### Second data source (added with deviation 12)
+
+Block data is **not available from Arkade** — `GetCommitmentTx` returns only batch-session data
+(`startedAt`/`endedAt`, amounts, vtxo counts) and no block information. It therefore comes from a
+Bitcoin explorer, the only non-Arkade host the app contacts:
+
+```
+mainnet    https://mempool.space/api/tx/{txid}
+signet     https://mempool.space/signet/api/tx/{txid}
+mutinynet  https://mutinynet.com/api/tx/{txid}
+→ status: { confirmed, block_height, block_hash, block_time }   (all CORS-open, verified)
+```
+
+Constraints this must keep: fetched **lazily, only when a COMMITMENT node is selected** (selecting
+an ark/checkpoint/tree node makes no request); degrades to `—` / `unconfirmed`, **never** to an
+error state — a mempool outage must not make a working Arkade chain look broken. Lives in
+`src/lib/mempool.ts`, deliberately outside `indexer.ts`: different host, different contract.
+
+Cross-check: for the reference commitment, `block_time` 1781081923 is 31s after Arkade's
+`endedAt` 1781081892 — the batch closes, then the tx is mined.
 
 ---
 

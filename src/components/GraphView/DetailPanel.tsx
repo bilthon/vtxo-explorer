@@ -5,7 +5,8 @@ import { useEffect, useRef, useState } from 'react'
 import { GlossaryTerm } from '../Glossary/Glossary'
 import { TYPE } from '../../graph/constants'
 import type { TxType } from '../../graph/types'
-import { countdownShort, short } from '../../lib/format'
+import { countdownShort, short, snapshot } from '../../lib/format'
+import type { CommitmentBlock } from '../../lib/mempool'
 import styles from './DetailPanel.module.css'
 
 export type DetailPanelParent = {
@@ -31,7 +32,27 @@ type Props = {
   selection: DetailPanelSelection | null
   /** Simple-path count from `countPaths()`. BigInt — it doubles per merge. */
   pathCount: bigint
+  /**
+   * Block height/time for a COMMITMENT selection, from the network's Bitcoin explorer.
+   * `null` for every other type — nothing is fetched and the fields aren't rendered.
+   * Supplementary: an explorer outage shows a dash, never an error state.
+   */
+  block: CommitmentBlock | null
   onSelect: (txid: string) => void
+}
+
+function formatBlockHeight(block: CommitmentBlock | null): string {
+  if (!block || block.status === 'unavailable') return '—'
+  if (block.status === 'loading') return '…'
+  if (block.status === 'unconfirmed') return 'unconfirmed'
+  return block.height.toLocaleString('en-US')
+}
+
+function formatBlockTime(block: CommitmentBlock | null): string {
+  if (!block || block.status === 'unavailable') return '—'
+  if (block.status === 'loading') return '…'
+  if (block.status === 'unconfirmed') return 'in mempool'
+  return snapshot(block.time * 1000)
 }
 
 const TYPE_CLASS: Record<TxType, string> = {
@@ -65,7 +86,7 @@ const COPY_ANNOUNCEMENT: Record<CopyState, string> = {
   failed: 'Could not copy the txid to the clipboard',
 }
 
-export function DetailPanel({ selection, pathCount, onSelect }: Props) {
+export function DetailPanel({ selection, pathCount, block, onSelect }: Props) {
   const [copyState, setCopyState] = useState<CopyState>('idle')
   const revertTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
@@ -89,15 +110,30 @@ export function DetailPanel({ selection, pathCount, onSelect }: Props) {
     revertTimer.current = setTimeout(() => setCopyState('idle'), COPY_REVERT_MS)
   }
 
+  // A commitment tx is the graph root, so Depth is always 0 and Inputs always 0 — two cells that
+  // never vary. Block height and block time are what actually distinguish one commitment from
+  // another, so they take those two slots. Every other type keeps Depth/Inputs.
+  const leadFields: [string, string][] =
+    selection?.type === 'M'
+      ? [
+          ['Block', formatBlockHeight(block)],
+          ['Time', formatBlockTime(block)],
+        ]
+      : selection
+        ? [
+            ['Depth', String(selection.depth)],
+            [
+              'Inputs',
+              selection.parents.length > 1
+                ? `${selection.parents.length} (merge)`
+                : String(selection.parents.length),
+            ],
+          ]
+        : []
+
   const fields = selection
     ? [
-        ['Depth', String(selection.depth)],
-        [
-          'Inputs',
-          selection.parents.length > 1
-            ? `${selection.parents.length} (merge)`
-            : String(selection.parents.length),
-        ],
+        ...leadFields,
         [
           'Spent by',
           selection.spentBy ? short(selection.spentBy) : 'None — this is the VTXO',

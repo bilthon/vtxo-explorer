@@ -40,6 +40,7 @@ import { useChain } from './hooks/useChain'
 import { useVtxo } from './hooks/useVtxo'
 import { useNow } from './hooks/useNow'
 import { useOperatorHealth } from './hooks/useOperatorHealth'
+import { useCommitmentBlock } from './hooks/useCommitmentBlock'
 import styles from './App.module.css'
 
 /** Turns a submitted query string into a route, or an inline complaint. */
@@ -179,6 +180,11 @@ function ExplorerRoute() {
   const vtxo = vtxoState.status === 'ready' ? vtxoState.value : null
   const pathCount = useMemo(() => (graph ? countPaths(graph, txid) : 0n), [graph, txid])
 
+  // Only commitment txs are onchain, so only they get a block lookup. Passing null for every
+  // other type means selecting an ark/checkpoint node never contacts the third-party explorer.
+  const commitmentTxid = graph?.nodes.get(selected)?.type === 'M' ? selected : null
+  const block = useCommitmentBlock(net, commitmentTxid)
+
   const selection = useMemo(() => {
     if (!graph) return null
     const node = graph.nodes.get(selected)
@@ -250,7 +256,12 @@ function ExplorerRoute() {
               onZoomChange={setZoom}
               onDimTypesChange={setDimTypes}
               panel={
-                <DetailPanel selection={selection} pathCount={pathCount} onSelect={setSel} />
+                <DetailPanel
+                  selection={selection}
+                  pathCount={pathCount}
+                  block={block}
+                  onSelect={setSel}
+                />
               }
             />
           ) : tab === 'table' ? (

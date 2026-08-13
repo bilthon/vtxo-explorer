@@ -7,12 +7,34 @@ export type Network = {
   id: NetworkId
   label: string
   baseUrl: string
+  /**
+   * Bitcoin block explorer API, a SECOND host distinct from the Arkade operator. Only used to
+   * resolve block height/time for commitment transactions — Arkade's GetCommitmentTx returns
+   * batch-session data (startedAt/endedAt) and no block information at all. Every other view
+   * talks solely to `baseUrl`.
+   */
+  explorerApi: string
 }
 
 export const NETWORKS: Record<NetworkId, Network> = {
-  mainnet: { id: 'mainnet', label: 'Mainnet', baseUrl: 'https://arkade.computer' },
-  mutinynet: { id: 'mutinynet', label: 'Mutinynet', baseUrl: 'https://mutinynet.arkade.sh' },
-  signet: { id: 'signet', label: 'Signet', baseUrl: 'https://signet.arkade.sh' },
+  mainnet: {
+    id: 'mainnet',
+    label: 'Mainnet',
+    baseUrl: 'https://arkade.computer',
+    explorerApi: 'https://mempool.space/api',
+  },
+  mutinynet: {
+    id: 'mutinynet',
+    label: 'Mutinynet',
+    baseUrl: 'https://mutinynet.arkade.sh',
+    explorerApi: 'https://mutinynet.com/api',
+  },
+  signet: {
+    id: 'signet',
+    label: 'Signet',
+    baseUrl: 'https://signet.arkade.sh',
+    explorerApi: 'https://mempool.space/signet/api',
+  },
 }
 
 export const NETWORK_LIST: Network[] = [
