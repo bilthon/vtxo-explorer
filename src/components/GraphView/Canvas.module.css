@@ -1,0 +1,16 @@
+/* owner: Phase 2D */
+
+.canvas {
+  position: relative;
+  flex: 1;
+  min-height: var(--layout-view-min-h);
+  overflow: auto;
+  background-color: var(--c-canvas);
+  background-image: radial-gradient(var(--c-dot-grid) 1px, transparent 1px);
+  background-size: var(--graph-dot-size) var(--graph-dot-size);
+}
+
+.plane {
+  position: relative;
+  transform-origin: 0 0;
+}

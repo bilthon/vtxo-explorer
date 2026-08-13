@@ -1,0 +1,53 @@
+/* owner: Phase 1C
+ *
+ * The prototype's global <style> block, ported from
+ * design_handoff_vtxo_explorer/VTXO Explorer.dc.html:14-23 with tokens in place
+ * of literal hexes.
+ *
+ * Import order matters: reset.css -> tokens.css -> global.css. The reset's
+ * `a { color: inherit }` has the same specificity as the link rule below, so
+ * this file must come last to win.
+ *
+ * @keyframes vtxpulse is NOT here — it lives in TopBar.module.css beside its
+ * only consumer, scoped by CSS Modules.
+ */
+
+body {
+  background: var(--c-page);
+}
+
+a {
+  color: var(--c-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--c-accent-hover);
+  text-decoration: underline;
+}
+
+::selection {
+  background: var(--c-accent-selection);
+}
+
+/* Shared scroll container. Apply `vtx-scroll` (global, unhashed — reference it
+ * as a plain string, not via a CSS Module) to any pane that scrolls: the graph
+ * canvas, the detail panel, the table body, the raw view. */
+.vtx-scroll {
+  scrollbar-color: var(--c-border-button) transparent;
+  scrollbar-width: thin;
+}
+
+.vtx-scroll::-webkit-scrollbar {
+  width: var(--layout-scrollbar);
+  height: var(--layout-scrollbar);
+}
+
+.vtx-scroll::-webkit-scrollbar-thumb {
+  background: var(--c-border-button);
+  border-radius: var(--radius-8);
+}
+
+.vtx-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}

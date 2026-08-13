@@ -1,0 +1,102 @@
+/* owner: Phase 2D */
+
+.card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  display: block;
+  width: var(--graph-node-w);
+  height: var(--graph-node-h);
+  padding: var(--sp-8) var(--sp-12);
+  border: 1px solid var(--c-border-button);
+  border-radius: var(--radius-9);
+  background: var(--c-card);
+  text-align: left;
+  cursor: pointer;
+}
+
+/* Per-type colour, inherited by the swatch and the type label. */
+.card[data-type='A'] {
+  --type-c: var(--c-type-arkade);
+}
+
+.card[data-type='C'] {
+  --type-c: var(--c-type-checkpoint);
+}
+
+.card[data-type='T'] {
+  --type-c: var(--c-type-tree);
+}
+
+.card[data-type='M'] {
+  --type-c: var(--c-type-commitment);
+}
+
+.card[data-merge='true'] {
+  border-color: var(--c-border-merge);
+}
+
+.card[data-selected='true'] {
+  border-color: var(--c-accent);
+  background: var(--c-node-selected);
+  box-shadow: var(--shadow-node-selected);
+}
+
+.card[data-dimmed='true'] {
+  opacity: var(--graph-dim-opacity);
+}
+
+.card:hover {
+  border-color: var(--c-border-card-hover);
+}
+
+.card:focus-visible {
+  outline: 1px solid var(--c-border-hover);
+  outline-offset: 2px;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-8);
+}
+
+.swatch {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-2);
+  background: var(--type-c);
+}
+
+.type {
+  font: var(--fw-bold) var(--fs-nano) / 1 var(--font-mono);
+  letter-spacing: var(--ls-type);
+  color: var(--type-c);
+}
+
+.depth {
+  font: var(--fw-medium) var(--fs-nano) / 1 var(--font-mono);
+  color: var(--c-text-faint);
+}
+
+.spacer {
+  flex: 1;
+}
+
+.tag {
+  font: var(--fw-semibold) var(--fs-nano) / 1 var(--font-mono);
+  letter-spacing: var(--ls-tag);
+  color: var(--c-text-faint);
+}
+
+.tag[data-tag='VTXO'] {
+  color: var(--c-accent);
+}
+
+.txid {
+  display: block;
+  margin-top: var(--sp-8);
+  font: var(--fw-medium) var(--fs-control) / 1 var(--font-mono);
+  color: var(--c-text-mono);
+}

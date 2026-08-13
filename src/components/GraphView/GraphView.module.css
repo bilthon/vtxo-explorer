@@ -1,0 +1,15 @@
+/* owner: Phase 2D */
+
+.view {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr var(--layout-panel-w);
+  min-height: 0;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border-right: 1px solid var(--c-divider);
+}

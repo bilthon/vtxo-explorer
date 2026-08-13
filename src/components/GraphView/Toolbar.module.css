@@ -1,0 +1,95 @@
+/* owner: Phase 2D */
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-10);
+  padding: var(--sp-12) var(--sp-18);
+  border-bottom: 1px solid var(--c-divider);
+}
+
+.icon,
+.button {
+  height: 30px;
+  border: 1px solid var(--c-border-button);
+  border-radius: var(--radius-7);
+  background: var(--c-control);
+  color: var(--c-text-button);
+  cursor: pointer;
+}
+
+.icon {
+  width: 30px;
+  padding: 0;
+  font: var(--fw-medium) 15px / 1 var(--font-ui);
+}
+
+.button {
+  padding: 0 var(--sp-12);
+  font: var(--fw-medium) var(--fs-control) / 1 var(--font-ui);
+}
+
+.icon:hover,
+.button:hover,
+.chip:hover {
+  border-color: var(--c-border-hover);
+}
+
+.icon:focus-visible,
+.button:focus-visible,
+.chip:focus-visible {
+  outline: 1px solid var(--c-border-hover);
+  outline-offset: 2px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.legend {
+  display: flex;
+  gap: var(--sp-6);
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-7);
+  height: 28px;
+  padding: 0 var(--sp-10);
+  border: 1px solid var(--c-border-button);
+  border-radius: var(--radius-6);
+  background: var(--c-control);
+  color: var(--c-text-mono);
+  font: var(--fw-medium) var(--fs-micro) / 1 var(--font-mono);
+  letter-spacing: var(--ls-stat);
+  cursor: pointer;
+}
+
+.chip[data-on='false'] {
+  color: var(--c-text-faint);
+  opacity: 0.45;
+}
+
+.chip[data-type='A'] {
+  --type-c: var(--c-type-arkade);
+}
+
+.chip[data-type='C'] {
+  --type-c: var(--c-type-checkpoint);
+}
+
+.chip[data-type='T'] {
+  --type-c: var(--c-type-tree);
+}
+
+.chip[data-type='M'] {
+  --type-c: var(--c-type-commitment);
+}
+
+.swatch {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-2);
+  background: var(--type-c);
+}

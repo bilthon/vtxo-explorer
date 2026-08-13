@@ -1,0 +1,47 @@
+/* owner: Phase 2F — invented loading state (PLAN.md §5 item 4) */
+
+.canvas {
+  position: relative;
+  flex: 1;
+  min-height: var(--layout-view-min-h);
+  overflow: hidden;
+  background-color: var(--c-canvas);
+  background-image: radial-gradient(var(--c-dot-grid) 1px, transparent 1px);
+  background-size: var(--graph-dot-size) var(--graph-dot-size);
+}
+
+.card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid var(--c-border-button);
+  border-radius: var(--radius-9);
+  background: var(--c-card);
+  animation: skeletonPulse var(--motion-pulse);
+}
+
+@keyframes skeletonPulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    animation: none;
+    opacity: 0.6;
+  }
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

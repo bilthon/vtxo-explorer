@@ -1,0 +1,76 @@
+/* owner: Phase 2F — invented not-found state (PLAN.md §5 item 4) */
+
+.screen {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--layout-view-min-h);
+  padding: var(--sp-40) var(--sp-24);
+  background-color: var(--c-canvas);
+  background-image: radial-gradient(var(--c-dot-grid) 1px, transparent 1px);
+  background-size: var(--graph-dot-size) var(--graph-dot-size);
+}
+
+.panel {
+  max-width: 460px;
+  padding: var(--sp-30) var(--sp-28);
+  border: 1px solid var(--c-border-control);
+  border-radius: var(--radius-10);
+  background: var(--c-card);
+  text-align: center;
+}
+
+.mark {
+  width: 34px;
+  height: 34px;
+  margin: 0 auto var(--sp-18);
+  border: 1px solid var(--c-border-dashed);
+  border-radius: var(--radius-round);
+  color: var(--c-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  line-height: 32px;
+}
+
+.title {
+  margin: 0 0 var(--sp-10);
+  color: var(--c-text);
+  font-family: var(--font-ui);
+  font-size: var(--fs-wordmark);
+  font-weight: var(--fw-semibold);
+}
+
+.body {
+  margin: 0;
+  color: var(--c-text-secondary);
+  font-family: var(--font-ui);
+  font-size: var(--fs-body);
+  line-height: var(--lh-tight);
+}
+
+.network {
+  color: var(--c-text);
+  font-weight: var(--fw-semibold);
+}
+
+.subject {
+  margin: var(--sp-14) 0 0;
+  padding: var(--sp-8) var(--sp-10);
+  border: 1px solid var(--c-border-control);
+  border-radius: var(--radius-7);
+  background: var(--c-control);
+  color: var(--c-text-mono);
+  font-family: var(--font-mono);
+  font-size: var(--fs-control);
+  word-break: break-all;
+}
+
+.hint {
+  margin: var(--sp-18) 0 0;
+  color: var(--c-text-label);
+  font-family: var(--font-ui);
+  font-size: var(--fs-control);
+  line-height: var(--lh-prose);
+}

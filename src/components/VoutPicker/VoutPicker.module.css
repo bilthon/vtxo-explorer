@@ -1,0 +1,105 @@
+/* owner: Phase 2F — invented picker (PLAN.md §5 item 11), reusing the table's row language */
+
+.screen {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--layout-view-min-h);
+  padding: var(--sp-40) var(--sp-24);
+  background-color: var(--c-canvas);
+  background-image: radial-gradient(var(--c-dot-grid) 1px, transparent 1px);
+  background-size: var(--graph-dot-size) var(--graph-dot-size);
+}
+
+.panel {
+  width: 100%;
+  max-width: 520px;
+  padding: var(--sp-28);
+  border: 1px solid var(--c-border-control);
+  border-radius: var(--radius-10);
+  background: var(--c-card);
+}
+
+.kicker {
+  margin: 0 0 var(--sp-10);
+  color: var(--c-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-kicker);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-kicker-panel);
+}
+
+.title {
+  margin: 0 0 var(--sp-12);
+  color: var(--c-text);
+  font-family: var(--font-ui);
+  font-size: var(--fs-wordmark);
+  font-weight: var(--fw-semibold);
+}
+
+.subject {
+  margin: 0 0 var(--sp-8);
+  color: var(--c-text-mono);
+  font-family: var(--font-mono);
+  font-size: var(--fs-control);
+  word-break: break-all;
+}
+
+.hint {
+  margin: 0 0 var(--sp-18);
+  color: var(--c-text-label);
+  font-family: var(--font-ui);
+  font-size: var(--fs-control);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Mirrors the detail panel's SPENDS row and the table's row language. */
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-12);
+  width: 100%;
+  padding: var(--sp-10) var(--sp-12);
+  border: 1px solid var(--c-border-control);
+  border-radius: var(--radius-7);
+  background: var(--c-card);
+  color: var(--c-text-mono);
+  font-family: var(--font-mono);
+  font-size: var(--fs-control);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--motion-fast);
+}
+
+.row:hover {
+  border-color: var(--c-border-hover);
+}
+
+.vout {
+  color: var(--c-accent);
+  font-weight: var(--fw-medium);
+}
+
+.amount {
+  color: var(--c-text);
+  font-weight: var(--fw-medium);
+}
+
+.spacer {
+  flex: 1;
+}
+
+.status {
+  color: var(--c-text-faint);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-stat);
+}

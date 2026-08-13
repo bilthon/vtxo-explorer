@@ -1,0 +1,48 @@
+/* owner: Phase 3G (wiring) */
+
+/*
+ * The explorer keeps the handoff's 1180px floor and scrolls horizontally below it — the graph is
+ * genuinely unreadable narrower. The landing has no floor (PLAN.md §1).
+ */
+.shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: var(--layout-shell-min-w);
+  background: var(--c-shell);
+  color: var(--c-text);
+  font-family: var(--font-ui);
+}
+
+.landing {
+  min-height: 100vh;
+  background: var(--c-page);
+  color: var(--c-text);
+  font-family: var(--font-ui);
+}
+
+.queryError {
+  margin: 0;
+  padding: 0 var(--sp-24) var(--sp-24);
+  color: var(--c-accent);
+  font-size: var(--fs-control);
+  text-align: center;
+}
+
+.queryErrorBar {
+  margin: 0;
+  padding: var(--sp-10) var(--sp-24);
+  border-bottom: 1px solid var(--c-divider);
+  background: var(--c-accent-tint);
+  color: var(--c-accent);
+  font-size: var(--fs-control);
+}
+
+.truncated {
+  margin: 0;
+  padding: var(--sp-10) var(--sp-28);
+  border-bottom: 1px solid var(--c-divider);
+  background: var(--c-accent-tint);
+  color: var(--c-accent);
+  font-size: var(--fs-control);
+}

@@ -1,0 +1,105 @@
+/* owner: Phase 1C */
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-24);
+  height: var(--layout-topbar-h);
+  padding: 0 var(--sp-24);
+  background: var(--c-bar);
+  border-bottom: 1px solid var(--c-divider);
+  color: var(--c-text);
+  font-family: var(--font-ui);
+}
+
+/* The wordmark is ~40px wider than the handoff's VTXOSCOPE. Everything but the
+ * search input holds its intrinsic width; the input (flex-basis 0) absorbs the
+ * difference. */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-10);
+  flex: none;
+}
+
+.mark {
+  width: 11px;
+  height: 11px;
+  background: var(--c-accent);
+  border-radius: var(--radius-2);
+}
+
+.wordmark {
+  font: var(--fw-bold) var(--fs-wordmark) / 1 var(--font-ui);
+  letter-spacing: var(--ls-wordmark);
+  white-space: nowrap;
+}
+
+.search {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+}
+
+.input {
+  width: 100%;
+  min-width: 0;
+  padding: var(--sp-10) var(--sp-14);
+  background: var(--c-control);
+  border: 1px solid var(--c-border-control);
+  border-radius: var(--radius-8);
+  color: var(--c-text);
+  font: var(--fw-regular) var(--fs-body) / 1 var(--font-mono);
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--c-text-muted);
+}
+
+.input:focus {
+  border-color: var(--c-border-hover);
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-8);
+  flex: none;
+  font: var(--fw-medium) var(--fs-control) / 1 var(--font-ui);
+  color: var(--c-text-muted);
+  white-space: nowrap;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-round);
+  background: var(--c-text-faint);
+}
+
+/* The only animation in the design. */
+@keyframes vtxpulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.dot[data-status='live'] {
+  background: var(--c-green);
+  animation: vtxpulse var(--motion-pulse);
+}
+
+.dot[data-status='down'] {
+  background: var(--c-text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot[data-status='live'] {
+    animation: none;
+  }
+}

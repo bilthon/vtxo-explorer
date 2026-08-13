@@ -1,0 +1,31 @@
+/* owner: Phase 1C */
+
+.switcher {
+  display: flex;
+  gap: var(--sp-2);
+  padding: var(--sp-3);
+  background: var(--c-control);
+  border: 1px solid var(--c-border-control);
+  border-radius: var(--radius-8);
+}
+
+.option {
+  padding: var(--sp-7) var(--sp-13);
+  border: 0;
+  border-radius: var(--radius-6);
+  background: transparent;
+  color: var(--c-text-muted);
+  font: var(--fw-medium) var(--fs-control) / 1 var(--font-ui);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.option[aria-pressed='true'] {
+  background: var(--c-control-active);
+  color: var(--c-text);
+}
+
+.option:focus-visible {
+  outline: 1px solid var(--c-border-hover);
+  outline-offset: 1px;
+}

@@ -1,0 +1,44 @@
+/* owner: Phase 1C */
+
+.tooltip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-tooltip);
+  max-width: 280px;
+  padding: var(--sp-10) var(--sp-12);
+  border: 1px solid var(--c-border-dashed);
+  border-radius: var(--radius-8);
+  background: var(--c-control);
+  box-shadow: var(--shadow-tooltip);
+  color: var(--c-text-mono);
+  font: var(--fw-regular) var(--fs-control) / var(--lh-tooltip) var(--font-ui);
+  pointer-events: none;
+}
+
+.term {
+  color: var(--c-text-button);
+  border-bottom: 1px dashed var(--c-border-hover);
+  cursor: help;
+}
+
+.help {
+  width: 15px;
+  height: 15px;
+  padding: 0;
+  border: 1px solid var(--c-border-dashed);
+  border-radius: var(--radius-round);
+  background: transparent;
+  color: var(--c-text-muted);
+  font: var(--fw-semibold) var(--fs-nano) / 1 var(--font-ui);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: help;
+}
+
+.term:focus-visible,
+.help:focus-visible {
+  outline: 1px solid var(--c-border-hover);
+  outline-offset: 2px;
+}

@@ -1,0 +1,160 @@
+/* owner: Phase 3G — handoff README §2 "Subject header" */
+
+.header {
+  display: grid;
+  grid-template-columns: minmax(var(--layout-subject-col-min), 1fr) auto;
+  gap: var(--sp-40);
+  align-items: end;
+  padding: var(--sp-30) var(--sp-28) var(--sp-26);
+  border-bottom: 1px solid var(--c-divider);
+}
+
+.identity {
+  min-width: 0;
+}
+
+.kickerRow {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-12);
+}
+
+.kicker {
+  color: var(--c-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-kicker);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-kicker-subject);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-6);
+  padding: var(--sp-3) 9px;
+  border: 1px solid;
+  border-radius: var(--radius-5);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-type);
+}
+
+.statusDot {
+  width: 5px;
+  height: 5px;
+  border-radius: var(--radius-round);
+  background: currentcolor;
+}
+
+/* Only PRECONFIRMED is designed; the rest reuse existing tokens (PLAN §5 item 3). */
+.statusPreconfirmed {
+  border-color: var(--c-accent-border);
+  background: var(--c-accent-tint);
+  color: var(--c-accent);
+}
+
+.statusSettled {
+  border-color: var(--c-green-border);
+  background: var(--c-green-tint);
+  color: var(--c-green);
+}
+
+.statusSpent {
+  border-color: var(--c-muted-border);
+  background: var(--c-muted-tint);
+  color: var(--c-text-muted);
+}
+
+.statusSwept,
+.statusUnrolled {
+  border-color: var(--c-purple-border);
+  background: var(--c-purple-tint);
+  color: var(--c-purple);
+}
+
+.txid {
+  margin: var(--sp-12) 0 0;
+  color: var(--c-text);
+  font-family: var(--font-mono);
+  font-size: var(--fs-txid);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-txid);
+  letter-spacing: var(--ls-txid);
+  word-break: break-all;
+}
+
+.vout {
+  color: var(--c-accent);
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-10) var(--sp-26);
+  margin-top: var(--sp-14);
+  color: var(--c-text-secondary);
+  font-family: var(--font-ui);
+  font-size: var(--fs-body);
+  line-height: var(--lh-tight);
+}
+
+.facts strong {
+  color: var(--c-text);
+  font-weight: var(--fw-semibold);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  border: 1px solid var(--c-border-control);
+  border-radius: var(--radius-10);
+  overflow: hidden;
+}
+
+/*
+ * Internal rules are an INSET SHADOW, not borders — documented bug fix, so the grid's rounded
+ * outer edge stays clean. Do not convert these to border-right/border-bottom.
+ */
+.cell {
+  padding: var(--sp-13) var(--sp-20);
+  min-width: 78px;
+  background: var(--c-bar);
+  box-shadow: var(--shadow-stat-rule);
+}
+
+.value {
+  margin: 0;
+  color: var(--c-text);
+  font-family: var(--font-mono);
+  font-size: var(--fs-stat);
+  font-weight: var(--fw-semibold);
+}
+
+.toneAccent {
+  color: var(--c-accent);
+}
+
+.toneMuted {
+  color: var(--c-text-secondary);
+}
+
+.tonePurple {
+  color: var(--c-purple);
+}
+
+.toneGreen {
+  color: var(--c-green);
+}
+
+.label {
+  margin-top: var(--sp-7);
+  color: var(--c-text-label);
+  font-family: var(--font-ui);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-stat);
+  text-transform: uppercase;
+}

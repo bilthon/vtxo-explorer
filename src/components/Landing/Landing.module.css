@@ -1,0 +1,131 @@
+/* owner: Phase 1C
+ *
+ * Not in the handoff — designed here from the same tokens. This is the one
+ * screen exempt from the 1180px floor: it reflows down to phone widths, so no
+ * min-width anywhere below. */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-20);
+  padding: var(--sp-40) var(--sp-24);
+  background: var(--c-page);
+  color: var(--c-text);
+  font-family: var(--font-ui);
+  text-align: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-12);
+  /* Scales between the top bar's wordmark size and the design's largest step. */
+  font-size: clamp(var(--fs-wordmark), 3.4vw, var(--fs-txid));
+}
+
+.mark {
+  /* The handoff's 11px mark against a 14px wordmark — kept proportional. */
+  width: 0.786em;
+  height: 0.786em;
+  background: var(--c-accent);
+  border-radius: var(--radius-2);
+}
+
+.wordmark {
+  margin: 0;
+  font: var(--fw-bold) 1em / 1 var(--font-ui);
+  letter-spacing: var(--ls-wordmark);
+}
+
+.tagline {
+  margin: calc(-1 * var(--sp-8)) 0 0;
+  max-width: 42ch;
+  color: var(--c-text-muted);
+  font: var(--fw-regular) var(--fs-body) / var(--lh-tight) var(--font-ui);
+}
+
+.search {
+  width: min(620px, 100%);
+  display: flex;
+}
+
+.input {
+  width: 100%;
+  min-width: 0;
+  padding: var(--sp-14) var(--sp-16);
+  background: var(--c-control);
+  border: 1px solid var(--c-border-control);
+  border-radius: var(--radius-8);
+  color: var(--c-text);
+  font: var(--fw-regular) var(--fs-body) / 1 var(--font-mono);
+  text-align: left;
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--c-text-muted);
+}
+
+.input:focus {
+  border-color: var(--c-border-hover);
+}
+
+.examples {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-10);
+}
+
+.examplesLabel {
+  font: var(--fw-semibold) var(--fs-kicker) / 1 var(--font-mono);
+  letter-spacing: var(--ls-kicker-panel);
+  text-transform: uppercase;
+  color: var(--c-text-label);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-8);
+}
+
+.chip {
+  max-width: 100%;
+  padding: var(--sp-7) var(--sp-12);
+  border: 1px solid var(--c-border-control);
+  border-radius: var(--radius-7);
+  background: var(--c-card);
+  color: var(--c-text-mono);
+  font: var(--fw-medium) var(--fs-kicker) / 1 var(--font-mono);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.chip:hover {
+  border-color: var(--c-border-hover);
+}
+
+.chip:focus-visible,
+.input:focus-visible {
+  outline: 1px solid var(--c-border-hover);
+  outline-offset: 2px;
+}
+
+@media (width <= 560px) {
+  .page {
+    gap: var(--sp-16);
+    padding: var(--sp-30) var(--sp-16);
+  }
+
+  .input {
+    padding: var(--sp-12) var(--sp-14);
+    font-size: var(--fs-control);
+  }
+}

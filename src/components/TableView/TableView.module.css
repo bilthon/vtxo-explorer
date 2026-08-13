@@ -1,0 +1,99 @@
+/* owner: Phase 2F — handoff README §5 */
+
+.body {
+  flex: 1;
+  min-height: var(--layout-view-min-h);
+  overflow: auto;
+}
+
+.table {
+  min-width: 100%;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 70px 132px 1fr 1fr;
+  padding: 11px var(--sp-22);
+  border-bottom: 1px solid var(--c-border-row);
+  cursor: pointer;
+}
+
+.row:hover,
+.row[data-selected] {
+  background: var(--c-control);
+}
+
+.row:focus-visible {
+  outline: 1px solid var(--c-border-hover);
+  outline-offset: -2px;
+}
+
+.head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: var(--sp-12) var(--sp-22);
+  background: var(--c-bar);
+  border-bottom: 1px solid var(--c-divider);
+  font: var(--fw-semibold) var(--fs-micro) / 1 var(--font-mono);
+  letter-spacing: var(--ls-type);
+  color: var(--c-text-label);
+  cursor: default;
+}
+
+.head:hover {
+  background: var(--c-bar);
+}
+
+.depth {
+  font: var(--fw-medium) var(--fs-control) / var(--lh-tight) var(--font-mono);
+  color: var(--c-text-label);
+}
+
+.txid,
+.spends {
+  font: var(--fw-regular) var(--fs-control) / var(--lh-tight) var(--font-mono);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: var(--sp-16);
+}
+
+.txid {
+  color: var(--c-text-mono);
+}
+
+.spends {
+  color: var(--c-text-label);
+}
+
+/* Bordered type pill. The per-type border tint is `{typeColor}55`; the alpha
+ * derivatives live in tokens.css so nothing here concatenates a hex. */
+.pill {
+  display: inline-block;
+  padding: 4px var(--sp-7);
+  border: 1px solid;
+  border-radius: var(--radius-4);
+  font: var(--fw-bold) var(--fs-nano) / 1 var(--font-mono);
+  letter-spacing: var(--ls-tag);
+}
+
+.pill[data-type='A'] {
+  color: var(--c-type-arkade);
+  border-color: var(--c-accent-border);
+}
+
+.pill[data-type='C'] {
+  color: var(--c-type-checkpoint);
+  border-color: var(--c-muted-border);
+}
+
+.pill[data-type='T'] {
+  color: var(--c-type-tree);
+  border-color: var(--c-purple-border);
+}
+
+.pill[data-type='M'] {
+  color: var(--c-type-commitment);
+  border-color: var(--c-green-border);
+}

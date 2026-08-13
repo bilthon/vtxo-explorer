@@ -1,0 +1,196 @@
+/* owner: Phase 1C
+ *
+ * Design tokens, transcribed 1:1 from the handoff README's "Design Tokens" section
+ * (design_handoff_vtxo_explorer/README.md). Every literal in the design lives here;
+ * component CSS Modules reference these via var() and hardcode nothing.
+ *
+ * Naming: --c-* colour, --font/--fs/--fw/--lh/--ls-* type, --sp-* spacing,
+ * --radius-* radii, --shadow-* shadows, --layout-* shell geometry,
+ * --graph-* graph geometry, --motion-* motion, --z-* stacking.
+ */
+
+:root {
+  /* ---------------------------------------------------------------
+   * Colour — surfaces
+   * ------------------------------------------------------------- */
+  --c-page: #08090b; /* page backdrop */
+  --c-shell: #0b0d10; /* app shell */
+  --c-bar: #0d1014; /* top bar, tab bar, stat cells, table header */
+  --c-canvas: #090a0d; /* graph canvas, raw view */
+  --c-card: #0f1319; /* node cards, run chips, spends rows */
+  --c-control: #12161c; /* controls, inputs, hovered table row */
+  --c-node-selected: #191509; /* selected node fill */
+
+  /* Colour — lines & borders */
+  --c-divider: #1b1f26; /* section divider */
+  --c-border-control: #1e242d; /* control border, stat grid rule */
+  --c-border-row: #14181e; /* table row divider */
+  --c-border-button: #232932; /* button border, scrollbar thumb */
+  --c-control-active: var(--c-border-button); /* selected segment fill — same hex, surface role */
+  --c-border-dashed: #2c333d; /* dashed border, tooltip border */
+  --c-border-hover: #3a424e; /* hover / focus border */
+  --c-border-merge: #3d4653; /* merge node border */
+  --c-border-card-hover: #4a5464; /* card hover border */
+  --c-edge: #242b35; /* graph edge stroke */
+  --c-dot-grid: #151a21; /* canvas dot grid (from prototype markup) */
+
+  /* Colour — text */
+  --c-text: #e6e9ee; /* primary text */
+  --c-text-mono: #c8d0db; /* mono values */
+  --c-text-button: #b4bdca; /* button label */
+  --c-text-secondary: #98a1ae; /* secondary text */
+  --c-text-raw: #8fa0b6; /* raw JSON */
+  --c-text-muted: #7c8798; /* muted text / checkpoint type */
+  --c-text-label: #6d7787; /* labels */
+  --c-text-faint: #5c6675; /* faintest meta */
+
+  /* Colour — accents */
+  --c-accent: #eab040; /* accent, arkade type */
+  --c-accent-hover: #f6c868; /* link hover */
+  --c-green: #4fd1a5; /* commitment type, live dot */
+  --c-purple: #b08cf0; /* tree type, merges */
+
+  /* Colour — transaction types (aliases of the accents above) */
+  --c-type-arkade: var(--c-accent);
+  --c-type-checkpoint: var(--c-text-muted);
+  --c-type-tree: var(--c-purple);
+  --c-type-commitment: var(--c-green);
+
+  /* Colour — alpha derivatives.
+   * Suffixes per the README: 55 border · 22 glow · 1A / 14 tint · 33 selection · 88 shadow.
+   * Status pills (PRECONFIRMED / SETTLED / SPENT / SWEPT / UNROLLED) reuse these:
+   * amber / green / muted / purple respectively. */
+  --c-accent-border: #eab04055;
+  --c-accent-glow: #eab04022;
+  --c-accent-tint: #eab0401a;
+  --c-accent-tint-14: #eab04014;
+  --c-accent-selection: #eab04033;
+  --c-green-border: #4fd1a555;
+  --c-green-tint: #4fd1a514;
+  --c-purple-border: #b08cf055;
+  --c-purple-tint: #b08cf014;
+  --c-muted-border: #7c879855;
+  --c-muted-tint: #7c879814;
+  --c-shadow: #00000088;
+
+  /* ---------------------------------------------------------------
+   * Typography
+   * ------------------------------------------------------------- */
+  --font-ui: 'Instrument Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* Scale */
+  --fs-txid: 21px; /* subject txid */
+  --fs-stat: 20px; /* stat value */
+  --fs-wordmark: 14px; /* wordmark */
+  --fs-body: 13px; /* search input, fact row, detail txid */
+  --fs-control: 12px; /* controls, tabs, table cells */
+  --fs-kicker: 11px; /* kickers, chip labels, field keys */
+  --fs-micro: 10px; /* stat labels, legend chips, table header */
+  --fs-nano: 9px; /* node card meta */
+
+  /* Line heights (everything else is 1) */
+  --lh-txid: 1.45;
+  --lh-tight: 1.4; /* fact row, stat label */
+  --lh-field-key: 1.5;
+  --lh-tooltip: 1.55;
+  --lh-value: 1.6; /* detail panel txid + values */
+  --lh-prose: 1.7; /* explainer copy */
+  --lh-raw: 1.75; /* raw JSON */
+
+  /* Letter spacing */
+  --ls-wordmark: 0.22em;
+  --ls-kicker-subject: 0.18em;
+  --ls-kicker-panel: 0.16em;
+  --ls-type: 0.12em; /* type labels, table header */
+  --ls-tag: 0.1em; /* node card tag */
+  --ls-stat: 0.08em; /* stat labels, legend chips */
+  --ls-tab: 0.06em;
+  --ls-field: 0.04em;
+  --ls-txid: -0.01em;
+
+  /* ---------------------------------------------------------------
+   * Spacing — the design's full step set
+   * ------------------------------------------------------------- */
+  --sp-2: 2px;
+  --sp-3: 3px;
+  --sp-6: 6px;
+  --sp-7: 7px;
+  --sp-8: 8px;
+  --sp-10: 10px;
+  --sp-12: 12px;
+  --sp-13: 13px;
+  --sp-14: 14px;
+  --sp-16: 16px;
+  --sp-18: 18px;
+  --sp-20: 20px;
+  --sp-22: 22px;
+  --sp-24: 24px;
+  --sp-26: 26px;
+  --sp-28: 28px;
+  --sp-30: 30px;
+  --sp-40: 40px;
+
+  /* ---------------------------------------------------------------
+   * Radii
+   * ------------------------------------------------------------- */
+  --radius-2: 2px; /* type swatch, logo mark */
+  --radius-4: 4px; /* table pill */
+  --radius-5: 5px; /* status pill */
+  --radius-6: 6px; /* small control, legend chip, type pill */
+  --radius-7: 7px; /* button, spends row */
+  --radius-8: 8px; /* run chip, input, tooltip, scrollbar thumb */
+  --radius-9: 9px; /* node card */
+  --radius-10: 10px; /* stat grid */
+  --radius-round: 50%; /* dots */
+
+  /* ---------------------------------------------------------------
+   * Shadows
+   * ------------------------------------------------------------- */
+  --shadow-stat-rule: inset -1px -1px 0 0 var(--c-border-control);
+  --shadow-tab-active: inset 0 -2px 0 0 var(--c-accent);
+  --shadow-node-selected: 0 0 0 3px var(--c-accent-glow);
+  --shadow-tooltip: 0 12px 30px var(--c-shadow);
+
+  /* ---------------------------------------------------------------
+   * Shell geometry
+   * ------------------------------------------------------------- */
+  --layout-shell-min-w: 1180px; /* explorer floor; landing is exempt */
+  --layout-topbar-h: 62px;
+  --layout-panel-w: 384px; /* detail panel */
+  --layout-subject-col-min: 520px; /* txid column floor */
+  --layout-view-min-h: 560px;
+  --layout-scrollbar: 10px;
+
+  /* ---------------------------------------------------------------
+   * Graph geometry
+   * ------------------------------------------------------------- */
+  --graph-node-w: 278px;
+  --graph-node-h: 54px;
+  --graph-chip-h: 36px;
+  --graph-col-w: 316px;
+  --graph-row-h: 78px;
+  --graph-pad-x: 40px;
+  --graph-pad-y: 36px;
+  --graph-dot-size: 26px;
+  --graph-edge-width: 1.5;
+  --graph-edge-width-active: 2;
+  --graph-dim-opacity: 0.22;
+
+  /* ---------------------------------------------------------------
+   * Motion — vtxpulse on the live dot is the only animation in the
+   * design. Any transition added must be <= --motion-fast.
+   * ------------------------------------------------------------- */
+  --motion-pulse: 2.4s ease-in-out infinite;
+  --motion-fast: 150ms;
+
+  /* ---------------------------------------------------------------
+   * Stacking
+   * ------------------------------------------------------------- */
+  --z-tooltip: 99;
+}

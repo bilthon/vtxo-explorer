@@ -1,0 +1,31 @@
+/* owner: Phase 2F — handoff README §6 */
+
+.view {
+  /* --fs-control 12px x --lh-raw 1.75. LINE_H in RawView.tsx must match this. */
+  --raw-line-h: 21px;
+
+  flex: 1;
+  min-height: var(--layout-view-min-h);
+  overflow: auto;
+  padding: var(--sp-22);
+  background: var(--c-canvas);
+}
+
+.spacer {
+  position: relative;
+}
+
+.pre {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-control);
+  font-weight: var(--fw-regular);
+  line-height: var(--raw-line-h);
+  color: var(--c-text-raw);
+  white-space: pre-wrap;
+  word-break: break-all;
+}

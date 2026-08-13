@@ -1,0 +1,73 @@
+/* owner: Phase 2D */
+
+.chip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-10);
+  width: var(--graph-node-w);
+  height: var(--graph-chip-h);
+  padding: 0 var(--sp-12);
+  border: 1px dashed var(--c-border-dashed);
+  border-radius: var(--radius-8);
+  background: var(--c-card);
+  cursor: pointer;
+}
+
+/* The prototype dims off-trace chips to .3, not to --graph-dim-opacity. */
+.chip[data-dimmed='true'] {
+  opacity: 0.3;
+}
+
+.chip:hover {
+  border-color: var(--c-border-card-hover);
+}
+
+.chip:focus-visible {
+  outline: 1px solid var(--c-border-hover);
+  outline-offset: 2px;
+}
+
+.caret {
+  font: var(--fw-semibold) var(--fs-kicker) / 1 var(--font-mono);
+  color: var(--c-accent);
+}
+
+.label {
+  font: var(--fw-medium) var(--fs-kicker) / 1 var(--font-ui);
+  color: var(--c-text-secondary);
+}
+
+.spacer {
+  flex: 1;
+}
+
+.dots {
+  display: flex;
+  gap: var(--sp-3);
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 1px;
+}
+
+.dot[data-type='A'] {
+  background: var(--c-type-arkade);
+}
+
+.dot[data-type='C'] {
+  background: var(--c-type-checkpoint);
+}
+
+.dot[data-type='T'] {
+  background: var(--c-type-tree);
+}
+
+.dot[data-type='M'] {
+  background: var(--c-type-commitment);
+}

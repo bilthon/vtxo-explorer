@@ -1,0 +1,90 @@
+/* owner: Phase 2F — invented error state (PLAN.md §5 item 4) */
+
+.screen {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--layout-view-min-h);
+  padding: var(--sp-40) var(--sp-24);
+  background-color: var(--c-canvas);
+  background-image: radial-gradient(var(--c-dot-grid) 1px, transparent 1px);
+  background-size: var(--graph-dot-size) var(--graph-dot-size);
+}
+
+/* Amber framing, unlike NotFound's muted panel — the two states must not be mistaken. */
+.panel {
+  max-width: 460px;
+  padding: var(--sp-30) var(--sp-28);
+  border: 1px solid var(--c-accent-border);
+  border-radius: var(--radius-10);
+  background: var(--c-card);
+  text-align: center;
+}
+
+.mark {
+  width: 34px;
+  height: 34px;
+  margin: 0 auto var(--sp-18);
+  border: 1px solid var(--c-accent-border);
+  border-radius: var(--radius-round);
+  background: var(--c-accent-tint);
+  color: var(--c-accent);
+  font-family: var(--font-mono);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  line-height: 32px;
+}
+
+.title {
+  margin: 0 0 var(--sp-10);
+  color: var(--c-text);
+  font-family: var(--font-ui);
+  font-size: var(--fs-wordmark);
+  font-weight: var(--fw-semibold);
+}
+
+.body {
+  margin: 0;
+  color: var(--c-text-secondary);
+  font-family: var(--font-ui);
+  font-size: var(--fs-body);
+  line-height: var(--lh-tight);
+}
+
+.network {
+  color: var(--c-text);
+  font-weight: var(--fw-semibold);
+}
+
+.detail {
+  margin: var(--sp-14) 0 0;
+  padding: var(--sp-8) var(--sp-10);
+  border: 1px solid var(--c-border-control);
+  border-radius: var(--radius-7);
+  background: var(--c-control);
+  color: var(--c-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-kicker);
+  line-height: var(--lh-value);
+  word-break: break-word;
+}
+
+.retry {
+  height: 30px;
+  margin-top: var(--sp-20);
+  padding: 0 var(--sp-14);
+  border: 1px solid var(--c-border-button);
+  border-radius: var(--radius-7);
+  background: var(--c-control);
+  color: var(--c-text-button);
+  font-family: var(--font-ui);
+  font-size: var(--fs-control);
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+  transition: border-color var(--motion-fast);
+}
+
+.retry:hover {
+  border-color: var(--c-border-hover);
+}
